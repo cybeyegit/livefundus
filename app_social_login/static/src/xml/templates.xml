@@ -3,5 +3,6 @@
     <t t-extend="UserMenu.Actions">
         <t t-jquery="a[data-menu='support']" t-operation="replace"></t>
         <t t-jquery="a[data-menu='account']" t-operation="replace"></t>
+        <t t-jquery="a[data-menu='Documentation']" t-operation="replace"></t>
     </t>
 </template>

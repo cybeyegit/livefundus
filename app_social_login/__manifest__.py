@@ -43,7 +43,7 @@
     'currency': 'EUR',
     'images': ['static/description/banner.png'],
     'depends': [
-        'auth_oauth',
+       'website_profile','auth_oauth',
     ],
     'summary': """
     Not available. under Working now.
@@ -67,7 +67,7 @@
         # 'security/*.xml',
         # 'security/ir.model.access.csv.csv',
         # 'data/.xml',
-        # 'views/.xml',
+        'views/templates.xml',
         # 'report/.xml',
     ],
     'qweb': [

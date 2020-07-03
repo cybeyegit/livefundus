@@ -3,6 +3,7 @@
 import logging
 
 from odoo.addons.website_profile.controllers.main import WebsiteProfile
+
 import math
 
 from odoo import http, modules, tools
@@ -23,6 +24,7 @@ class WebsiteContact(WebsiteProfile):
                 (user_sudo.id != request.session.uid and request.env.user.karma < request.website.karma_profile_min):
             return user_sudo
         return user_sudo
+
 
     @http.route(['/profile/users',
                  '/profile/users/page/<int:page>'], type='http', auth="public", website=True)
@@ -62,3 +64,4 @@ class WebsiteContact(WebsiteProfile):
             }
 
         return request.render("website_profile.users_page_main", values)
+

@@ -3,6 +3,7 @@
 import logging
 
 from odoo.addons.website_profile.controllers.main import WebsiteProfile
+
 import math
 
 from odoo import http, modules, tools
@@ -61,3 +62,4 @@ class WebsiteContact(WebsiteProfile):
             values = {'top3_users': [], 'users': [], 'search': search_term, 'pager': dict(page_count=0)}
 
         return request.render("website_profile.users_page_main", values)
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="user_profile_header" inherit_id="website_profile.user_profile_header">
+            <xpath expr="//small[first()]" position="replace">
+            </xpath>
+        </template>
+    </data>
+</odoo>

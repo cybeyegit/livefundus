@@ -15,12 +15,6 @@
             <xpath expr="//div[hasclass('o_wprofile_sidebar_top')]" position="replace">
             </xpath>
 
-            <xpath expr="//small[contains(string(), 'Next rank:')]" position="replace">
-            </xpath>
-
-            <xpath expr="//small[contains(string(), 'Badges')]/../.." position="replace">
-            </xpath>
-
             <xpath expr="//div[@id='profile_about_badge']" position="replace">
             </xpath>
         </template>

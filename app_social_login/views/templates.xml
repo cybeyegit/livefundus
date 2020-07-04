@@ -29,5 +29,24 @@
             <xpath expr="//div[@id='profile_about_badge']" position="replace">
             </xpath>
         </template>
+
+        <template id="user_profile_content2" inherit_id="website_profile.user_profile_content">
+            <xpath expr="//t[@t-if='channel']" position="replace">
+                <t t-if="channel">
+                    <div t-if="courses_completed" class="mb32">
+                        <h5 class="border-bottom pb-1">Completed Courses</h5>
+                        <t t-call="website_slides.display_course">
+                            <t t-set="courses" t-value="courses_completed"/>
+                        </t>
+                    </div>
+                    <div t-if="courses_ongoing" class="mb32">
+                        <h5 class="border-bottom pb-1">Followed Courses2</h5>
+                        <t t-call="website_slides.display_course">
+                            <t t-set="courses" t-value="courses_ongoing"/>
+                        </t>
+                    </div>
+                </t>
+            </xpath>
+        </template>
     </data>
 </odoo>

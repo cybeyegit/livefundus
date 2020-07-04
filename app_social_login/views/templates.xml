@@ -5,5 +5,24 @@
             <xpath expr="//small" position="replace">
             </xpath>
         </template>
+
+        <template id="profile_next_rank_card" inherit_id="website_profile.profile_next_rank_card">
+            <xpath expr="//div" position="replace">
+            </xpath>
+        </template>
+
+        <template id="user_profile_content" inherit_id="website_profile.user_profile_content">
+            <xpath expr="//div[hasclass('o_wprofile_sidebar_top')]" position="replace">
+            </xpath>
+
+            <xpath expr="//small[contains(string(), 'Next rank:')]" position="replace">
+            </xpath>
+
+            <xpath expr="//small[contains(string(), 'Badges')]/../.." position="replace">
+            </xpath>
+
+            <xpath expr="//div[@id='profile_about_badge']" position="replace">
+            </xpath>
+        </template>
     </data>
 </odoo>

@@ -8,9 +8,6 @@
 
         <template id="user_profile_content" inherit_id="website_profile.user_profile_content">
             <xpath expr="//div[hasclass('o_wprofile_sidebar')]" position="replace">
-                <div class="o_wprofile_sidebar bg-white px-3 py-2 py-md-3 mb-3 mb-md-5">
-
-                </div>
             </xpath>
 
             <xpath expr="//div[@id='profile_about_badge']" position="replace">

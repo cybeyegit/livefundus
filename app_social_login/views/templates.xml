@@ -9,31 +9,17 @@
         <template id="user_profile_content" inherit_id="website_profile.user_profile_content">
             <xpath expr="//div[hasclass('o_wprofile_sidebar')]" position="replace">
                 <div class="o_wprofile_sidebar bg-white px-3 py-2 py-md-3 mb-3 mb-md-5">
-                    <div class="collapse d-md-block" id="o_wprofile_sidebar_collapse">
-                        <table class="table table-sm w-100" id="o_wprofile_sidebar_table">
-                            <tbody>
-                                <tr>
-                                    <th>
-                                        <small class="font-weight-bold">Joined</small>
-                                    </th>
-                                    <td>
-                                        <span t-field="user.create_date" t-options='{"format": "d MMM Y"}'/>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
                 </div>
             </xpath>
 
             <xpath expr="//div[@id='profile_about_badge']" position="replace">
             </xpath>
-        </template>
 
-        <template id="user_profile_content2" inherit_id="website_profile.user_profile_content">
-            <xpath expr="//t[@t-if='channel']" position="replace">
+             <xpath expr="//t[@t-if='channel']" position="replace">
 
             </xpath>
         </template>
+
     </data>
 </odoo>

@@ -6,19 +6,20 @@
             </xpath>
         </template>
 
-        <template id="profile_next_rank_card" inherit_id="website_profile.profile_next_rank_card">
-            <xpath expr="//div" position="replace">
-            </xpath>
-        </template>
-
         <template id="user_profile_content" inherit_id="website_profile.user_profile_content">
-            <xpath expr="//div[hasclass('o_wprofile_sidebar_top')]" position="replace">
-            </xpath>
-
-            <xpath expr="//small[contains(string(), 'Next rank:')]" position="replace">
-            </xpath>
-
-            <xpath expr="//small[contains(string(), 'Badges')]/../.." position="replace">
+            <xpath expr="//div[hasclass('o_wprofile_sidebar')]" position="replace">
+                <table class="table table-sm w-100" id="o_wprofile_sidebar_table">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <small class="font-weight-bold">Joined</small>
+                            </th>
+                            <td>
+                                <span t-field="user.create_date" t-options='{"format": "d MMM Y"}'/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </xpath>
 
             <xpath expr="//div[@id='profile_about_badge']" position="replace">

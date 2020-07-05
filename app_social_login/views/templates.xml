@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <template id="assets_frontend" inherit_id="website.assets_frontend">
+            <xpath expr="link[last()]" position="after">
+                <link rel="stylesheet" type="text/scss" href="/app_social_login/static/src/scss/website_profile.scss"/>
+            </xpath>
+        </template>
+
         <template id="user_profile_header" inherit_id="website_profile.user_profile_header">
             <xpath expr="//small" position="replace">
             </xpath>
         </template>
 
         <template id="user_profile_content" inherit_id="website_profile.user_profile_content">
-            <xpath expr="//div[hasclass('o_wprofile_sidebar')]" position="replace">
-                <div class="o_wprofile_sidebar bg-white px-3 py-2 py-md-3 mb-3 mb-md-5">
-                    <div class="collapse d-md-block" id="o_wprofile_sidebar_collapse">
-                        <table class="table table-sm w-100" id="o_wprofile_sidebar_table">
-                            <tbody>
-                                <tr>
-                                    <th>
-                                        <small class="font-weight-bold">Joined</small>
-                                    </th>
-                                    <td>
-                                        <span t-field="user.create_date" t-options='{"format": "d MMM Y"}'/>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+            <xpath expr="//div[hasclass('o_wprofile_sidebar')]/../../div[2]" position="attributes">
+                <attribute name="class">col-12 col-md-12 col-lg-12</attribute>
             </xpath>
+
+            <xpath expr="//div[hasclass('o_wprofile_sidebar')]/.." position="replace">
+
+            </xpath>
+
+
 
             <xpath expr="//div[@id='profile_about_badge']" position="replace">
             </xpath>

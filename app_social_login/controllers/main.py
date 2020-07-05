@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 import logging
-
-from odoo.addons.website_profile.controllers.main import WebsiteProfile
-
 import math
+
 import babel.dates
-from odoo import http, modules, tools, fields, _
+from odoo import http, fields
+from odoo.addons.website_profile.controllers.main import WebsiteProfile
 from odoo.http import request
 from odoo.osv import expression
 from odoo.tools.misc import get_lang
@@ -31,12 +30,17 @@ class WebsiteContact(WebsiteProfile):
         end_date = fields.Datetime.from_string(event.date_end).date()
         month = babel.dates.get_month_names('abbreviated', locale=get_lang(event.env).code)[start_date.month]
         return ('%s %s%s') % (
-        month, start_date.strftime("%e"), (end_date != start_date and ("-" + end_date.strftime("%e")) or ""))
+            month, start_date.strftime("%e"), (end_date != start_date and ("-" + end_date.strftime("%e")) or ""))
 
     def _prepare_user_profile_values(self, user, **post):
         values = super(WebsiteContact, self)._prepare_user_profile_values(user, **post)
 
-        events = request.env['event.event'].sudo().search([('create_uid', '=', user.id)])
+        events = request.env['event.event'].sudo().search([
+            ('create_uid', '=', user.id),
+            '|',
+            ('website_id', '=', request.env['website'].get_current_website().id),
+            ('website_id', '=', False)
+        ])
 
         values['user_events'] = []
 
@@ -85,4 +89,3 @@ class WebsiteContact(WebsiteProfile):
             values = {'top3_users': [], 'users': [], 'search': search_term, 'pager': dict(page_count=0)}
 
         return request.render("website_profile.users_page_main", values)
-

@@ -48,7 +48,7 @@
             content: "";
             @include o-position-absolute(auto, 0, 0, 0);
             height: $owprofile-tabs-height;
-            background: $secondary;
+            background: #875A7B;
             margin-bottom: -$owprofile-tabs-height
         }
     }

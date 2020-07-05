@@ -35,7 +35,7 @@ class WebsiteContact(WebsiteProfile):
     def _prepare_user_profile_values(self, user, **post):
         values = super(WebsiteContact, self)._prepare_user_profile_values(user, **post)
 
-        events = request.env['event.event'].sudo().search([
+        events = request.env['event.event'].search([
             ('create_uid', '=', user.id),
             '|',
             ('website_id', '=', request.env['website'].get_current_website().id),

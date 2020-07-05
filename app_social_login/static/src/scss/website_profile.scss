@@ -1,0 +1,56 @@
+.o_wprofile_nav_tabs {
+    @include media-breakpoint-up(md)  {
+        margin-top: 0;
+        border-bottom: 0;
+
+        .nav-link {
+            border-radius: 0;
+            border-width: 0 1px;
+            line-height: $line-height-base;
+            @include o-hover-text-color(rgba(white, 0.8), white);
+
+            &, &:hover {
+                border-color: $primary;
+                background: transparent;
+            }
+
+            &.active {
+                color: color-yiq($owprofile-color-bg);
+                background: $owprofile-color-bg;
+                border-color: $owprofile-color-bg;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(xs) {
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        li {
+            white-space: nowrap;
+        }
+    }
+
+
+}
+
+.o_wprofile_header {
+    @include media-breakpoint-up(md)  {
+        &:after {
+            content: "";
+            @include o-position-absolute(auto, 0, 0, 0);
+            height: $owprofile-tabs-height;
+            background: rgba(black, 0.2);
+            margin-bottom: -$owprofile-tabs-height
+        }
+
+        &:before {
+            content: "";
+            @include o-position-absolute(auto, 0, 0, 0);
+            height: $owprofile-tabs-height;
+            background: $secondary;
+            margin-bottom: -$owprofile-tabs-height
+        }
+    }
+}
+

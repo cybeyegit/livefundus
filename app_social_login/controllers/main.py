@@ -26,6 +26,14 @@ class WebsiteContact(WebsiteProfile):
         return user_sudo
 
 
+    def _prepare_user_profile_values(self, user, **post):
+        values = super(WebsiteProfile, self)._prepare_user_profile_values(user, **post)
+
+        values['user_events'] = request.env['event.event'].sudo().browse({'created_by':user.id})
+
+        return values
+
+
     @http.route(['/profile/users',
                  '/profile/users/page/<int:page>'], type='http', auth="public", website=True)
     def view_all_users_page(self, page=1, **searches):

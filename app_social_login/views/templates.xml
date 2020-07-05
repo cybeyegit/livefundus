@@ -55,7 +55,7 @@
                                 <i class="fa fa-globe mr-2"/>Upcoming Events
                             </h6>
                             <ul class="list-group mb-3">
-                                <li t-foreach="user_events[:5]" t-as="event_dict"
+                                <li t-foreach="user_events" t-as="event_dict"
                                     class="list-group-item d-flex justify-content-between">
                                     <a t-att-href="event_dict['url']">
                                         <i t-if="not event_dict['event'].website_published"
@@ -67,11 +67,6 @@
                                     <span t-esc="event_dict['date']"/>
                                 </li>
                             </ul>
-                            <div t-if="len(user_events) &gt; 5">
-                                <a href="/event" class="small">
-                                    <b>View all</b>
-                                </a>
-                            </div>
                         </t>
                     </div>
                 </div>

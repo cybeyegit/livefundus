@@ -22,10 +22,66 @@
 
             <xpath expr="//div[@id='profile_about_badge']" position="replace">
             </xpath>
-        </template>
 
-        <template id="user_profile_content2" inherit_id="website_profile.user_profile_content">
             <xpath expr="//t[@t-if='channel']" position="replace">
+            </xpath>
+
+            <xpath expr="//ul[@id='profile_extra_info_tablist']" position="inside">
+                <li class="nav-item">
+                    <a role="tab" aria-controls="questions" href="#events" class="nav-link o_wprofile_navlink"
+                       data-toggle="tab">
+                        Events
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a role="tab" aria-controls="activity" href="#blogs" class="nav-link o_wprofile_navlink"
+                       data-toggle="tab">Blogs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a role="tab" aria-controls="answers" href="#products" class="nav-link o_wprofile_navlink"
+                       data-toggle="tab">
+                        Products
+                    </a>
+                </li>
+            </xpath>
+
+            <xpath expr="//div[@id='profile_extra_info_tabcontent']" position="inside">
+                <div role="tabpanel" class="o_wforum_profile_tab tab-pane" id="events">
+                    <div class="mb32">
+                        <h5 class="border-bottom pb-1">Events</h5>
+                        <t t-if="user_events">
+                            <h6 class="o_wevent_sidebar_title">
+                                <i class="fa fa-globe mr-2"/>Upcoming Events
+                            </h6>
+                            <ul class="list-group mb-3">
+                                <li t-foreach="user_events" t-as="event_dict"
+                                    class="list-group-item d-flex justify-content-between">
+                                    <a t-att-href="event_dict['url']">
+                                        <i t-if="not event_dict['event'].website_published"
+                                           class="fa fa-ban text-danger mr-1" role="img" aria-label="Unpublished"
+                                           title="Unpublished"/>
+                                        <span t-esc="event_dict['event'].name"
+                                              t-attf-class="#{(not event_dict['event'].website_published) and 'text-danger' or ''}"/>
+                                    </a>
+                                    <span t-esc="event_dict['date']"/>
+                                </li>
+                            </ul>
+                        </t>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="o_wforum_profile_tab tab-pane" id="blogs">
+                    <div class="mb32">
+                        <h5 class="border-bottom pb-1">Blogs</h5>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="o_wforum_profile_tab tab-pane" id="products">
+                    <div class="mb32">
+                        <h5 class="border-bottom pb-1">Products</h5>
+                    </div>
+                </div>
             </xpath>
         </template>
     </data>

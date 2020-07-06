@@ -32,9 +32,13 @@ class WebsiteContact(WebsiteProfile):
         return ('%s %s%s') % (
             month, start_date.strftime("%e"), (end_date != start_date and ("-" + end_date.strftime("%e")) or ""))
 
-    def _prepare_user_profile_values(self, user, **post):
-        values = super(WebsiteContact, self)._prepare_user_profile_values(user, **post)
+    def get_formated_blog_date(self, blog):
+        post_date = fields.Datetime.from_string(blog.post_date).date()
 
+        month = babel.dates.get_month_names('abbreviated', locale=get_lang(blog.env).code)[post_date.month]
+        return ('%s %s') % (month, post_date.strftime("%e"))
+
+    def _add_user_events(self, user, values):
         events = request.env['event.event'].search([
             ('create_uid', '=', user.id),
             '|',
@@ -50,6 +54,27 @@ class WebsiteContact(WebsiteProfile):
                 "event": event,
                 "url": event.website_url})
 
+    def _add_user_blogs(self, user, values):
+        blogs = request.env['blog.post'].search([
+            ('create_uid', '=', user.id),
+            '|',
+            ('website_id', '=', request.env['website'].get_current_website().id),
+            ('website_id', '=', False)
+        ])
+
+        values['user_blogs'] = []
+
+        for blog in blogs:
+            values['user_blogs'].append({
+                "date": self.get_formated_blog_date(blog),
+                "blog": blog,
+                "url": blog.website_url})
+
+    def _prepare_user_profile_values(self, user, **post):
+        values = super(WebsiteContact, self)._prepare_user_profile_values(user, **post)
+
+        self._add_user_events(user, values)
+        self._add_user_blogs(user, values)
         return values
 
     @http.route(['/profile/users',

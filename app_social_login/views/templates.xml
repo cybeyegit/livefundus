@@ -56,9 +56,6 @@
                             <h5 class="border-bottom pb-1">
                                 <i class="fa fa-globe mr-2"/> Events
                             </h5>
-                            <!--                            <h6 class="o_wevent_sidebar_title">-->
-                            <!--                                <i class="fa fa-globe mr-2"/>Upcoming Events-->
-                            <!--                            </h6>-->
                             <ul class="list-group mb-3">
                                 <li t-foreach="user_events" t-as="event_dict"
                                     class="list-group-item d-flex justify-content-between">
@@ -78,7 +75,21 @@
 
                 <div role="tabpanel" class="o_wforum_profile_tab tab-pane" id="blogs">
                     <div class="mb32">
-                        <h5 class="border-bottom pb-1">Blogs</h5>
+                       <t t-if="user_blogs">
+                            <h5 class="border-bottom pb-1">
+                                <i class="fa fa-globe mr-2"/> Blogs
+                            </h5>
+
+                            <ul class="list-group mb-3">
+                                <li t-foreach="user_blogs" t-as="blog_dict"
+                                    class="list-group-item d-flex justify-content-between">
+                                    <a t-att-href="blog_dict['url']">
+                                        <span t-esc="blog_dict['blog'].name"/>
+                                    </a>
+                                    <span t-esc="blog_dict['date']"/>
+                                </li>
+                            </ul>
+                        </t>
                     </div>
                 </div>
 
@@ -87,6 +98,11 @@
                         <h5 class="border-bottom pb-1">Products</h5>
                     </div>
                 </div>
+            </xpath>
+        </template>
+
+        <template id="user_profile_sub_nav" inherit_id="website_profile.user_profile_sub_nav">
+            <xpath expr="//div" position="replace">
             </xpath>
         </template>
     </data>

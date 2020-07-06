@@ -89,5 +89,10 @@
                 </div>
             </xpath>
         </template>
+
+        <template id="user_profile_sub_nav" inherit_id="website_profile.user_profile_sub_nav">
+            <xpath expr="//div" position="replace">
+            </xpath>
+        </template>
     </data>
 </odoo>

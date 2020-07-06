@@ -28,7 +28,7 @@
 
             <xpath expr="//ul[@id='profile_extra_info_tablist']" position="inside">
                 <li class="nav-item">
-                    <a role="tab" aria-controls="questions" href="#events" class="nav-link o_wprofile_navlink"
+                    <a t-if="user_events" role="tab" aria-controls="questions" href="#events" class="nav-link o_wprofile_navlink"
                        data-toggle="tab">
                         Events
                     </a>
@@ -49,11 +49,11 @@
             <xpath expr="//div[@id='profile_extra_info_tabcontent']" position="inside">
                 <div role="tabpanel" class="o_wforum_profile_tab tab-pane" id="events">
                     <div class="mb32">
-                        <h5 class="border-bottom pb-1">Events</h5>
                         <t t-if="user_events">
-                            <h6 class="o_wevent_sidebar_title">
-                                <i class="fa fa-globe mr-2"/>Upcoming Events
-                            </h6>
+                        <h5 class="border-bottom pb-1">Events</h5>
+<!--                            <h6 class="o_wevent_sidebar_title">-->
+<!--                                <i class="fa fa-globe mr-2"/>Upcoming Events-->
+<!--                            </h6>-->
                             <ul class="list-group mb-3">
                                 <li t-foreach="user_events" t-as="event_dict"
                                     class="list-group-item d-flex justify-content-between">

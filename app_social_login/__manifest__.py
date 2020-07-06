@@ -43,7 +43,7 @@
     'currency': 'EUR',
     'images': ['static/description/banner.png'],
     'depends': [
-       'website_profile','auth_oauth', 'website_slides', 'website_event'
+       'website_profile','auth_oauth', 'website_slides', 'website_event', 'website_blog'
     ],
     'summary': """
     Not available. under Working now.

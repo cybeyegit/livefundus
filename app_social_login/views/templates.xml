@@ -45,22 +45,17 @@
                 <li class="nav-item">
                     <a t-if="user_events" role="tab" aria-controls="events" href="#events"
                        class="nav-link o_wprofile_navlink"
-                       data-toggle="tab">
-                        Events
-                    </a>
+                       data-toggle="tab">Events</a>
                 </li>
                 <li class="nav-item">
                     <a t-if="user_blogs" role="tab" aria-controls="blogs" href="#blogs"
                        class="nav-link o_wprofile_navlink"
-                       data-toggle="tab">Blogs
-                    </a>
+                       data-toggle="tab">Blogs</a>
                 </li>
                 <li class="nav-item">
                     <a t-if="user_products" role="tab" aria-controls="products" href="#products"
                        class="nav-link o_wprofile_navlink"
-                       data-toggle="tab">
-                        Products
-                    </a>
+                       data-toggle="tab">Products</a>
                 </li>
             </xpath>
 

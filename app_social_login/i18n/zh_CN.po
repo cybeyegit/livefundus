@@ -12,3 +12,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: app_social_login
+#: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
+msgid "Events"
+msgstr "活动"
+
+#. module: app_social_login
+#: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
+msgid "Blogs"
+msgstr "博客"
+
+#. module: app_social_login
+#: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
+msgid "Products"
+msgstr "产品"
+
+#. module: app_social_login
+#: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
+msgid "Votes"
+msgstr "投票"
+
+#. module: app_social_login
+#: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
+msgid "Activity"
+msgstr "动态"
+
+#. module: app_social_login
+#: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
+msgid "Questions"
+msgstr "问题"

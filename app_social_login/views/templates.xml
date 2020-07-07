@@ -41,7 +41,6 @@
                 </li>
             </xpath>
 
-
             <xpath expr="//ul[@id='profile_extra_info_tablist']" position="inside">
                 <li class="nav-item">
                     <a t-if="user_events" role="tab" aria-controls="events" href="#events"
@@ -111,7 +110,21 @@
 
                 <div role="tabpanel" class="o_wforum_profile_tab tab-pane" id="products">
                     <div class="mb32">
-                        <h5 class="border-bottom pb-1">Products</h5>
+                        <t t-if="user_products">
+                            <h5 class="border-bottom pb-1">
+                                <i class="fa fa-globe mr-2"/> Products
+                            </h5>
+
+                            <ul class="list-group mb-3">
+                                <li t-foreach="user_products" t-as="product_dict"
+                                    class="list-group-item d-flex justify-content-between">
+                                    <a t-att-href="product_dict['url']">
+                                        <span t-esc="product_dict['product'].name"/>
+                                    </a>
+                                    <span t-esc="product_dict['date']"/>
+                                </li>
+                            </ul>
+                        </t>
                     </div>
                 </div>
             </xpath>

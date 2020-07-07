@@ -38,6 +38,12 @@ class WebsiteContact(WebsiteProfile):
         month = babel.dates.get_month_names('abbreviated', locale=get_lang(blog.env).code)[post_date.month]
         return ('%s %s') % (month, post_date.strftime("%e"))
 
+    def get_formated_product_date(self, product):
+        create_date = fields.Datetime.from_string(product.create_date).date()
+
+        month = babel.dates.get_month_names('abbreviated', locale=get_lang(product.env).code)[create_date.month]
+        return ('%s %s') % (month, create_date.strftime("%e"))
+
     def _add_user_events(self, user, values):
         events = request.env['event.event'].search([
             ('create_uid', '=', user.id),
@@ -70,11 +76,29 @@ class WebsiteContact(WebsiteProfile):
                 "blog": blog,
                 "url": blog.website_url})
 
+    def _add_user_products(self, user, values):
+        products = request.env['product.template'].search([
+            ('create_uid', '=', user.id),
+            '|',
+            ('website_id', '=', request.env['website'].get_current_website().id),
+            ('website_id', '=', False)
+        ])
+
+        values['user_products'] = []
+
+        for product in products:
+            values['user_products'].append({
+                "date": self.get_formated_product_date(product),
+                "product": product,
+                "url": product.website_url})
+
     def _prepare_user_profile_values(self, user, **post):
         values = super(WebsiteContact, self)._prepare_user_profile_values(user, **post)
 
         self._add_user_events(user, values)
         self._add_user_blogs(user, values)
+        self._add_user_products(user, values)
+
         return values
 
     @http.route(['/profile/users',

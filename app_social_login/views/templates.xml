@@ -26,22 +26,38 @@
             <xpath expr="//t[@t-if='channel']" position="replace">
             </xpath>
 
+            <xpath expr="//t[@t-if='forum']" position="replace">
+                <li t-if="count_questions &gt; 0" class="nav-item">
+                    <a role="tab" aria-controls="questions" href="#questions" class="nav-link o_wprofile_navlink" data-toggle="tab"><t t-esc="count_questions"/> Questions</a>
+                </li>
+                <li t-if="count_answers &gt; 0" class="nav-item">
+                    <a role="tab" aria-controls="answers" href="#answers" class="nav-link o_wprofile_navlink" data-toggle="tab"><t t-esc="count_answers"/> Answers</a>
+                </li>
+                <li t-if="uid == user.id" class="nav-item">
+                    <a role="tab" aria-controls="activity" href="#activity" class="nav-link o_wprofile_navlink" data-toggle="tab">Activity</a>
+                </li>
+                <li t-if="uid == user.id" class="nav-item">
+                    <a role="tab" aria-controls="votes" href="#votes" class="nav-link o_wprofile_navlink" data-toggle="tab">Votes</a>
+                </li>
+            </xpath>
+
+
             <xpath expr="//ul[@id='profile_extra_info_tablist']" position="inside">
                 <li class="nav-item">
-                    <a t-if="user_events" role="tab" aria-controls="questions" href="#events"
+                    <a t-if="user_events" role="tab" aria-controls="events" href="#events"
                        class="nav-link o_wprofile_navlink"
                        data-toggle="tab">
                         Events
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a t-if="user_blogs" role="tab" aria-controls="activity" href="#blogs"
+                    <a t-if="user_blogs" role="tab" aria-controls="blogs" href="#blogs"
                        class="nav-link o_wprofile_navlink"
                        data-toggle="tab">Blogs
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a t-if="user_products" role="tab" aria-controls="answers" href="#products"
+                    <a t-if="user_products" role="tab" aria-controls="products" href="#products"
                        class="nav-link o_wprofile_navlink"
                        data-toggle="tab">
                         Products

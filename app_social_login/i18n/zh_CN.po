@@ -42,3 +42,8 @@ msgstr "动态"
 #: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
 msgid "Questions"
 msgstr "问题"
+
+#. module: app_social_login
+#: model_terms:ir.ui.view,arch_db:app_social_login.user_profile_content
+msgid "Answers"
+msgstr "回答"

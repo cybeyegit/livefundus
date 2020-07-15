@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_loyalty_history_tree" model="ir.ui.view">
+        <field name="name">loyalty.history.tree</field>
+        <field name="model">loyalty.history</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <tree string="Earn History" create="false">
+            <field name="date"/>
+            <field name="partner_id"/>
+            <field name="sale_order_id"/>
+            <field name="loyalty_id"/>
+            <field name="redeem_type"/>
+            <!--field name="loyalty_process"/-->
+            <field name="redeem_amount"/>
+            <field name="points_processed"/>
+            <field name="ref"/>
+        </tree>
+        </field>
+    </record>
+    
+    <record id="view_loyalty_history_form" model="ir.ui.view">
+        <field name="name">loyalty.history.form</field>
+        <field name="model">loyalty.history</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <form string="Earn History" create='false' edit='false'>
+            <sheet>
+                <group string="Sale Info" >
+                    <group>
+                        <field name="partner_id" readonly="1" string="Customer"/>
+                        <field name="ref" readonly="1" string="Description" />
+                    </group>
+                    <group>
+                        <field name="sale_order_id" readonly="1" string="Sale Order Number" />
+                        <field name="date" readonly="1" string="Redeemed Date" />
+                    </group>
+                </group>
+                <group string="Loyalty Info">
+                    <group>
+                        <field name="loyalty_id" readonly="1" string="Loyalty Program"/>
+                        <field name="redeem_type" readonly="1" string="Redeem Point Policy" />
+                        <field name="points_processed" readonly="1" string="Points Processed" />
+                    </group>
+                    <group>
+                        <field name="loyalty_process" readonly="1" string="Process" />
+                        <field name="redeem_amount" readonly="1" string="Discount Amount" />
+                    </group>
+                </group> 
+                    
+            </sheet>
+        </form>
+        </field>
+    </record>
+    
+    <record id="view_loyalty_history_search" model="ir.ui.view">
+        <field name="name">loyalty.history.search</field>
+        <field name="model">loyalty.history</field>
+        <field name="type">search</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <search string="Earn History">
+            <field name="partner_id" select="True"/>
+            <field name="sale_order_id"/>
+            <field name="loyalty_id"/>
+            <group expand="0" name="group_by" string="Group By">
+                <filter name="sale_order" string="Sale Order" domain="[]" context="{'group_by' : 'sale_order_id'}" />
+                <filter name="process" string="Process" domain="[]" context="{'group_by' : 'loyalty_process'}" />
+            </group>
+        </search>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="act_open_loyalty_history_view">
+        <field name="name">Earn History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loyalty.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_loyalty_history_search"/>
+        <field name="domain">[('loyalty_process', 'in', ['addition'])]</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_loyalty_history_view_form">
+        <field name="act_window_id" ref="act_open_loyalty_history_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_loyalty_history_form"/>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_loyalty_history_view_tree">
+        <field name="act_window_id" ref="act_open_loyalty_history_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_loyalty_history_tree"/>
+    </record>
+    
+    <menuitem id="menu_loyalty_history"
+        parent="menu_main_root_loyalty"
+        sequence="2"
+        action="act_open_loyalty_history_view"/>
+
+
+    <record id="view_loyalty_spent_history_tree" model="ir.ui.view">
+        <field name="name">loyalty.history.tree</field>
+        <field name="model">loyalty.history</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <tree string="Spent History" create="false">
+            <field name="date"/>
+            <field name="partner_id"/>
+            <field name="sale_order_id"/>
+            <field name="loyalty_id"/>
+            <field name="redeem_type"/>
+            <!--field name="loyalty_process" /-->
+            <field name="redeem_amount"/>
+            <field name="points_processed"/>
+            <field name="ref"/>
+        </tree>
+        </field>
+    </record>
+    
+    <record id="view_loyalty_spent_history_form" model="ir.ui.view">
+        <field name="name">loyalty.history.form</field>
+        <field name="model">loyalty.history</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <form string="Spent History" create="false" edit="false">
+            <sheet>
+                <group string="Sale Info" >
+                    <group>
+                        <field name="partner_id" readonly="1" string="Customer"/>
+                        <field name="ref" readonly="1" string="Description" />
+                    </group>
+                    <group>
+                        <field name="sale_order_id" readonly="1" string="Sale Order Number"/>
+                        <field name="date" readonly="1" string="Redeemed Date"/>
+                    </group>
+                </group>
+                <group string="Loyalty Program Info">
+                    <group>
+                        <field name="loyalty_id" readonly="1" string="Loyalty Program" />
+                        <field name="redeem_type" readonly="1" string="Redeem Point Policy" />
+                        <field name="points_processed" readonly="1" string="Points Processed"/>
+                    </group>
+                    <group>
+                        <field name="loyalty_process" readonly="1" string="Process"/>
+                        <field name="redeem_amount" readonly="1" string="Discount Amount"/>
+                    </group>
+                </group> 
+                    
+            </sheet>
+        </form>
+        </field>
+    </record>
+    
+    <record id="view_loyalty_spent_history_search" model="ir.ui.view">
+        <field name="name">loyalty.history.search</field>
+        <field name="model">loyalty.history</field>
+        <field name="type">search</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <search string="Spent History">
+            <field name="partner_id" select="True"/>
+            <field name="sale_order_id"/>
+            <field name="loyalty_id"/>
+            <group expand="0" name="group_by" string="Group By">
+                <filter name="sale_order" string="Sale Order" domain="[]" context="{'group_by' : 'sale_order_id'}" />
+                <filter name="process" string="Process" domain="[]" context="{'group_by' : 'loyalty_process'}" />
+            </group>
+        </search>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="act_open_loyalty_spent_history_view">
+        <field name="name">Spent History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loyalty.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_loyalty_spent_history_search"/>
+        <field name="domain">[('loyalty_process', 'in', ['deduction'])]</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_loyalty_spent_history_view_form">
+        <field name="act_window_id" ref="act_open_loyalty_spent_history_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_loyalty_spent_history_form"/>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_loyalty_spent_history_view_tree">
+        <field name="act_window_id" ref="act_open_loyalty_spent_history_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_loyalty_spent_history_tree"/>
+    </record>
+    
+    <menuitem id="menu_loyalty_spent_history"
+        parent="menu_main_root_loyalty"
+        sequence="3"
+        action="act_open_loyalty_spent_history_view"/>
+
+</odoo>

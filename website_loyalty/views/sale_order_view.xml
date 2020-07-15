@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_loyatly_sale_order_inherit_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_clear')]" position="before">
+                        <group>
+                            <group>
+                                <field name="extra_loyalty_points" string="Extra Loyalty Points"/>
+                                <field name="loyalty_state" string="Loylaty State"/>
+                                <field name="loyalty_points" string="Loyalty Points"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

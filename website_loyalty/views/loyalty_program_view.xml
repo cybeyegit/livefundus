@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_loyalty_program_tree" model="ir.ui.view">
+        <field name="name">loyalty.program.tree</field>
+        <field name="model">loyalty.program</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <tree string="Loyalty Programs" decoration-muted="(not active)">
+            <field name="name"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="active"/>
+            <field name="description"/>
+        </tree>
+        </field>
+    </record>
+    
+    <record id="view_loyalty_program_form" model="ir.ui.view">
+        <field name="name">loyalty.program.form</field>
+        <field name="model">loyalty.program</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <form string="Loyalty Programs">
+            <sheet>
+                <div class="oe_right oe_button_box" name="buttons">
+                    <button string="Earn History" class="oe_stat_button" icon="fa-history"
+                        name="%(act_open_loyalty_history_view)d"  
+                        type="action" domain="[('loyalty_id','=', active_id)]" context="{'search_default_loyalty_id': active_id }" help="Click to see all Earn History for this loyalty program."/>
+                    <button string="Spent History" class="oe_stat_button" icon="fa-history"
+                        name="%(act_open_loyalty_spent_history_view)d" help="Click to see all Spent History for this loyalty program."
+                        type="action" domain="[('loyalty_id','=', active_id)]" context="{'search_default_loyalty_id': active_id }"/>
+                </div>
+                <group>
+                    <group>
+                        <field name="date_start" required="1" string="Start Date" />
+                    </group>
+                    <group>
+                        <field name="date_end" required="1" string="End Date"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="description" string="Loyalty Program Description"/>
+                    </group>
+                    <group>
+                        <field name="active"/>
+                        <field name="product_id" required="1" string="Loyalty Product"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                    </group>
+                    <group>
+                    </group>
+                </group>
+                <notebook colspan="4">
+                    <page string="Earning Rate">
+                        <group>
+                            <group>
+                                <field name="signup_points" string="Sign Up Points"/>
+                                <!--field name="base_loyalty"/-->
+                                <field name="redeem_stage" required="1" string="Earn Stage On"/>
+                                <field name="round_amount" string="Rounding Points?"/>
+                            </group>
+                            <group>
+                                <field name="purchase_amount" string="Amount of money spent"/>
+                                <field name="points_earn" string="Earning Point(s)"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Spending Rate">
+                        <group>
+                            <group>
+                                <field name="redeem_type" required="1" string="Redeem Point Policy"/>
+                            </group>
+                            <group>
+                                <field name="maximum_redeem_amount" required="1" string="Maximum Redeem Points Per Sale Order"/>
+                                <field name="minimum_purchase" string="Minimum Purchase Amount"/>
+                            </group>
+                        </group>
+                        <group string="Spending Rule" col="4">
+                            <field name="start_point" required="1" string="Point Start For Redeem" />
+                            <field name="end_point" required="1" string="Point End For Redeem"/>
+                        </group>
+                            <div><b>
+                                    1 Reward Points = <field name="reward" nolabel="1" class="oe_inline"/>(of Amount) Discount Received.</b>
+                                    </div>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+        </field>
+    </record>
+    
+    <record id="view_loyalty_program_search" model="ir.ui.view">
+        <field name="name">loyalty.program.search</field>
+        <field name="model">loyalty.program</field>
+        <field name="type">search</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <search string="Loyalty Programs">
+            <field name="name" select="True"/>
+            <filter string="All Records" name="all" domain="['|', ('active', '=', False), ('active', '=', True)]"/>
+        </search>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="act_open_loyalty_program_view">
+        <field name="name">Loyalty Programs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loyalty.program</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_loyalty_program_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_all': 1}</field>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_loyalty_program_view_form">
+        <field name="act_window_id" ref="act_open_loyalty_program_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_loyalty_program_form"/>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_loyalty_program_view_tree">
+        <field name="act_window_id" ref="act_open_loyalty_program_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_loyalty_program_tree"/>
+    </record>
+    
+    <menuitem id="menu_loyalty_program"
+        parent="menu_main_root_loyalty"
+        sequence="1"
+        action="act_open_loyalty_program_view"/>
+
+</odoo>

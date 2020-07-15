@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_main_root_loyalty" 
+            parent="sale.sale_menu_root"
+            sequence="20"
+            name="Loyalty Program Management"
+            groups="sales_team.group_sale_manager"/>
+
+</odoo>

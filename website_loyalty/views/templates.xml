@@ -19,7 +19,9 @@
                     <ul class="list-unstyled mb32">
                         <t t-set="currency_symbol" t-value="request.website.pricelist_id.currency_id.symbol"/>
                         <t t-if="request.uid and website.sale_get_order()">
+
                             <t t-if="len(WebsiteLoyalty)!= 0 and website.sale_get_order().partner_id.loyalty_points > 0">
+
                                 <li>☑You have 
                                     
                                     

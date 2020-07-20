@@ -138,10 +138,12 @@ class LoyaltyProgram(models.Model):
                 raise exceptions.ValidationError(
                     _("Maximum Redeem Amount Per Sale order can not be 0 or less than 0!!!"))
 
-    @api.constrains('active')
-    def _check_active_only_one(self):
-        if len(self.search([('active', '=', True)])) > 1:
-            raise exceptions.ValidationError(_("One Loyalty Program can be active at one time!"))
+
+    # @api.constrains('active')
+    # def _check_active_only_one(self):
+    #     if len(self.search([('active', '=', True)])) > 1:
+    #         raise exceptions.ValidationError(_("One Loyalty Program can be active at one time!"))
+
 
     @api.model
     def _signup_loyalty_program_points(self):

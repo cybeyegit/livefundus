@@ -19,12 +19,12 @@
                     <ul class="list-unstyled mb32">
                         <t t-set="currency_symbol" t-value="request.website.pricelist_id.currency_id.symbol"/>
                         <t t-if="request.uid and website.sale_get_order()">
-
+                            <span>Debug Loyalty Points:<t t-esc="website.sale_get_order().partner_id.loyalty_points"/></span>
                             <t t-if="len(WebsiteLoyalty)!= 0 and int(website.sale_get_order().partner_id.loyalty_points) > 0">
 
-                                <li>☑You have 
-                                    
-                                    
+                                <li>☑You have
+
+
                                     <span class="_o_custom_text_color">
                                         <b>
                                             <t t-esc="website.sale_get_order().partner_id.loyalty_points"/></b>

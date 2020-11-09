@@ -16,7 +16,7 @@
                             <a t-attf-class="js_change_lang btn btn-sm {{ 'btn-primary' if lg[0] == lang else 'btn-secondary'}}"
                                t-att-data-url_code="lg[1]"
                                t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code=lg[0])">
-                                <t t-set="display_dict" t-value="{'en_US': 'EN', 'zh_CN': '简体', 'zh_TW': ' 繁体'}"/>
+                                <t t-set="display_dict" t-value="{'en_US': 'EN', 'zh_CN': '简', 'zh_TW': ' 繁'}"/>
                                 <t t-set="display_lg"
                                    t-value="lg[2].split('/').pop() if lg[0] not in display_dict else display_dict[lg[0]]"/>
                                 <t t-esc="display_lg"/>

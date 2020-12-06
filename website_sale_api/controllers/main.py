@@ -54,7 +54,7 @@ class WebsiteSaleAPI(WebsiteSale):
         else:
             category = Category
 
-        domain = self._get_api_search_domain(search, category, [])
+        domain = self._get_search_domain(search, category, [])
         # print(domain)
         # pricelist_context, pricelist = self._get_pricelist_context()
         # request.context = dict(request.context, pricelist=pricelist.id, partner=request.env.user.partner_id)

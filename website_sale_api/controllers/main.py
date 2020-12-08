@@ -105,7 +105,7 @@ class WebsiteSaleAPI(WebsiteSale):
             categ_ids = []
 
         Category = request.env['product.public.category'].sudo()
-        categs_domain = [('parent_id', '=', False)] + [self.get_current_website().website_domain()]
+        categs_domain = [('parent_id', '=', False)] + request.website.get_current_website().website_domain()
 
         if categ_ids:
             categs_domain.append(('id', 'in', categ_ids))
